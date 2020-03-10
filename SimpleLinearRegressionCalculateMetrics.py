@@ -4,7 +4,8 @@ Created on Tue Mar 10 08:58:23 2020
 
 @author: Santosh Sah
 """
-
+from sklearn.metrics import mean_squared_error
+import math
 from SimpleLinearRegressionUtils import (readSimpleLinearRegressionModel, readSimpleLinearRegressionXTest, readSimpleLinearRegressionYTest,
                                          readSimpleLinearRegressionXTrain, readSimpleLinearRegressionYTrain)
 """
@@ -28,6 +29,11 @@ def calculateMetricsForTrainingDataSet():
     #calculate y-intercept
     simpleLinearRegressionIntercept = simpleLinearRegressionModel.intercept_
     print(simpleLinearRegressionIntercept) #value of y-intercept is 26780.099
+    
+    #calculate root mean squared error
+    y_pred = simpleLinearRegressionModel.predict(X_train)
+    simpleLinearRegressionRMSE = math.sqrt(mean_squared_error(y_train, y_pred))
+    print(simpleLinearRegressionRMSE) #mean root square error is 6012.45
 
     
 """
@@ -51,6 +57,11 @@ def calculateMetricsForTestingDataSet():
     #calculate y-intercept
     simpleLinearRegressionIntercept = simpleLinearRegressionModel.intercept_
     print(simpleLinearRegressionIntercept) #value of y-intercept is 26780.099
+    
+    #calculate root mean squared error
+    y_pred = simpleLinearRegressionModel.predict(X_test)
+    simpleLinearRegressionRMSE = math.sqrt(mean_squared_error(y_test, y_pred))
+    print(simpleLinearRegressionRMSE) #mean root square error is 3580.97
     
 if __name__ == "__main__":
     calculateMetricsForTrainingDataSet()
